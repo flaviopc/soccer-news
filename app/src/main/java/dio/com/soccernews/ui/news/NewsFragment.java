@@ -1,4 +1,4 @@
-package dio.com.soccernews.ui.home;
+package dio.com.soccernews.ui.news;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,22 +10,21 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import dio.com.soccernews.databinding.FragmentHomeBinding;
+import dio.com.soccernews.databinding.FragmentNewsBinding;
 
-public class HomeFragment extends Fragment {
+public class NewsFragment extends Fragment {
 
-    private FragmentHomeBinding binding;
+    private FragmentNewsBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        HomeViewModel homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
+        NewsViewModel newsViewModel = new ViewModelProvider(this).get(NewsViewModel.class);
 
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        binding = FragmentNewsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
         final TextView textView = binding.textHome;
-        homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        newsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
     }
 
