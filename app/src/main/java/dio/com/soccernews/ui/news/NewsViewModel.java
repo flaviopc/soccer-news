@@ -19,6 +19,7 @@ public class NewsViewModel extends ViewModel {
     private final MutableLiveData<List<News>> news = new MutableLiveData<>();
     private SoccerNewsRestAPI api;
 
+
     public NewsViewModel() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://flaviopc.github.io/matches-api/")
@@ -26,6 +27,8 @@ public class NewsViewModel extends ViewModel {
                 .build();
 
         api = retrofit.create(SoccerNewsRestAPI.class);
+
+
         this.findNews();
 
     }
