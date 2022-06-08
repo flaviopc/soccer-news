@@ -1,6 +1,5 @@
 package dio.com.soccernews.ui.news;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +10,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import dio.com.soccernews.MainActivity;
 import dio.com.soccernews.databinding.FragmentNewsBinding;
 import dio.com.soccernews.ui.adapter.NewsAdapter;
 
@@ -30,14 +28,18 @@ public class NewsFragment extends Fragment {
 
         binding.rvNews.setLayoutManager(new LinearLayoutManager(getContext()));
         newsViewModel.getNews().observe(getViewLifecycleOwner(), news -> {
-            binding.rvNews.setAdapter(new NewsAdapter(news, favoriteNews -> {
-                MainActivity activity = (MainActivity) getActivity();
-                AsyncTask.execute(() -> {
-                    assert activity != null;
-                    activity.getDb().newsDao().save(favoriteNews);
-                });
+            binding.rvNews.setAdapter(new NewsAdapter(news, newsViewModel::saveNews));
+        });
 
-            }));
+        newsViewModel.getState().observe(getViewLifecycleOwner(), state -> {
+            switch (state) {
+                case DOING:
+                    break;
+                case DONE:
+                    break;
+                default:
+
+            }
         });
         return root;
     }
