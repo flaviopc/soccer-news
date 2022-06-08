@@ -21,7 +21,7 @@ public class NewsViewModel extends ViewModel {
 
     private final MutableLiveData<List<News>> news = new MutableLiveData<>();
 
-    private void findNews() {
+    public void findNews() {
         state.setValue(State.DOING);
         SoccerNewsRepository.getInstance().getRemoteApi().getNews().enqueue(new Callback<List<News>>() {
             @Override

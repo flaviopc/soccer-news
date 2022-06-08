@@ -6,4 +6,5 @@
     <string name="content_description_news_image">news image</string>
     <string name="content_description_favorite_icon">favorite icon</string>
     <string name="content_description_share_icon">share icon</string>
+    <string name="txt_error_find_news">Houve um erro ao tentar buscar as noticias</string>
 </resources>
